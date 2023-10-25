@@ -1,7 +1,7 @@
 import './App.css'
 import { useState } from 'react'
-import EventForm from './components/EventForm'
 import EventList from './components/EventList'
+import EventForm from './components/EventForm';
 // import ViewEmployee from './components/viewEmployee.jsx';
 
 
