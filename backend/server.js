@@ -5,7 +5,7 @@ const helmet = require('helmet'); // adds a bunch of standard security to server
 require('dotenv').config();
 require('./config/db.js');
 const Event = require('./models/Event.js');
-const PORT = 3000;
+const PORT = 3003;
 const path = require("path")
 
 const app = express();
@@ -39,7 +39,7 @@ app.get("/events", async (req, res) => {
 
 app.post("/events/employees", async (req, res) => {
     let arrayOfEmployees = await Employee.find();
-    res.send(arrayOfEmployee);
+    res.send(arrayOfEmployees);
 });
 
 
