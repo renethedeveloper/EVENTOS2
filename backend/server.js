@@ -6,9 +6,9 @@ require('dotenv').config();
 require('./config/db.js');
 const Event = require('./models/Event.js');
 const PORT = 3000;
+const path = require("path")
 
 const app = express();
-app.use(express.static(path.join(__dirname, "../client/dist")))
 
 
 // START MIDDLEWARE //
@@ -18,7 +18,14 @@ app.use(cors({
 }));
 app.use(morgan('dev'));
 app.use(helmet());
+app.use((req,res,next)=>{
+    if(req.path.startsWith('/server')){
+        req.url.replace('/server',"")
+    }
+    next()
+})
 // END MIDDLEWARE //
+app.use(express.static(path.join(__dirname, "../client/dist")))
 
 // START ROUTES //
 
