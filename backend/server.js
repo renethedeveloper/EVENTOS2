@@ -5,7 +5,7 @@ const helmet = require('helmet'); // adds a bunch of standard security to server
 require('dotenv').config();
 require('./config/db.js');
 const Event = require('./models/Event.js');
-const PORT = 3003;
+const PORT = 3000;
 const path = require("path")
 
 const app = express();
@@ -18,12 +18,12 @@ app.use(cors({
 }));
 app.use(morgan('dev'));
 app.use(helmet());
-app.use((req,res,next)=>{
-    if(req.path.startsWith('/server')){
-        req.url.replace('/server',"")
-    }
-    next()
-})
+// app.use((req,res,next)=>{
+//     if(req.path.startsWith('/server')){
+//         req.url.replace('/server',"")
+//     }
+//     next()
+// })
 // END MIDDLEWARE //
 app.use(express.static(path.join(__dirname, "../client/dist")))
 
@@ -61,10 +61,7 @@ app.put('/events/:idOfEvent', async (req, res) => {
 
 
 app.post("/events", async (req, res) => {
-    // 1. get the data that was sent from the frontend
-    // let eventData = req.body.eventData;
-
-    // 2. Model.create(eventData)
+    
 
     try {
         let response = await Event.create(req.body);
